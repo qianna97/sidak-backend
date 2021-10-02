@@ -1,0 +1,39 @@
+{% extends "admin/change_list.html" %}
+{% load static %}
+
+{% block extrahead %}
+{{ block.super }}
+<script>
+    function process() {
+        var tanggal = document.getElementById("tanggal").value;
+        var kelas = document.getElementById("kelas").value;
+
+        window.open('http://localhost:8000/rekap/'+kelas+'/'+tanggal, '_blank').focus();
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+
+<div>
+    <h1>Rekap Presensi</h1>
+
+    <select name="tanggal" id="tanggal">
+        {% for item in tanggal %}
+            <option value={{ item }}>{{ item }}</option>
+        {% endfor %}
+    </select>
+
+    <select name="kelas" id="kelas">
+        {% for item in kelas %}
+            <option value={{ item }}>{{ item }}</option>
+        {% endfor %}
+    </select>
+
+    <button onclick="process()">
+        Rekap
+    </button>
+</div>
+<br>
+{{ block.super }}
+{% endblock %}

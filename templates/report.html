@@ -1,0 +1,44 @@
+<style>
+    table, th, td {
+      border: 0.5px solid black;
+      border-collapse: collapse;
+      min-height: 30px;
+    }
+</style>
+
+<center>
+    <h2>
+        REKAP PRESENSI KELAS {{ kelas }} PERIODE {{ tanggal }}
+    </h2>
+    <br>
+</center>
+
+<table style="width: 100%;">
+    <tr>
+      <th>Nama</th>
+      {% for i in range %}
+        <th style="min-width:20px">{{ i }}</th>
+      {% endfor %}
+      <th style="min-width:20px">H</th>
+      <th style="min-width:20px">I</th>
+      <th style="min-width:20px">S</th>
+      <th style="min-width:20px">A</th>
+    </tr>
+    {% for siswa in data%}
+    <tr>
+      {% for i in siswa %}
+        <td>{{ i }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan={{len_range}}+4></td>
+    </tr>
+    <tr>
+        <td colspan={{len_range}}>TOTAL</td>
+        <td>{{total_hadir}}</td>
+        <td>{{total_izin}}</td>
+        <td>{{total_sakit}}</td>
+        <td>{{total_absen}}</td>
+    </tr>
+</table>

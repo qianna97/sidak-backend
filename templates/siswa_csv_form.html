@@ -1,0 +1,18 @@
+{% extends 'admin/change_list.html' %}
+{% load static %}
+{% block content %}
+    {{ block.super }}
+    <h1>Unggah Data Siswa</h1>
+    <p>
+        Data siswa yang diunggah tidak akan menghapus data siswa yang lama, pastikan data tidak berisi duplikat nomor induk.<br />
+        Format data dapat diunduh <a href="{% static 'format/siswa.csv' %}">disini</a>.<br />
+        Baris pertama berupa header atau penanda harap untuk tidak dihapus. Kolom <span style="font-weight:bold">nomor induk, nama, kelas</span> harap diisi.<br />
+        Format penulisan kelas harap disesuaikan dengan data sebelumnya. Data Kelas akan diperbaharui secara otomatis.<br />
+        Jika kolom password kosong, maka password default akan otomatis terisi 123456.
+    </p>
+    <form action="upload-csv/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ csv_upload_form }}
+        <input type="submit" value="Unggah">
+    </form>
+{% endblock %}
